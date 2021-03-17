@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useFonts, Neuton_400Regular, Neuton_700Bold } from '@expo-google-fonts/neuton'
 import BaseStyles from './BaseStyles';
+import NextAppointmentCard from './components/NextAppointmentCard';
 
 const Isotype = require("./assets/isotype.png")
 
@@ -19,10 +20,16 @@ export default function App() {
 
 	return (
 		<View style={styles.container}>
-			<Image style={styles.isotype} source={Isotype}></Image>
-			<View style={styles.logo}>
-				<Text style={{ ...BaseStyles.title, ...styles.title }}>Formal</Text>
-				<Text style={{ ...BaseStyles.subtitle, ...styles.subtitle }}>Barbershop & Grooming Store</Text>
+			<View style={styles.header}>
+				<Image style={styles.isotype} source={Isotype}></Image>
+				<View style={styles.logo}>
+					<Text style={{ ...BaseStyles.title, ...styles.title }}>Formal</Text>
+					<Text style={{ ...BaseStyles.subtitle, ...styles.subtitle }}>Barbershop & Grooming Store</Text>
+				</View>
+			</View>
+			
+			<View style={styles.nextAppointment}>
+				<NextAppointmentCard/>
 			</View>
 			<StatusBar style="auto" />
 		</View>
@@ -36,6 +43,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	header: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flex: 1
+	},
 	isotype: {
 		resizeMode: 'contain',
 		height: 150,
@@ -43,7 +56,7 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		alignItems: 'center',
-		width: '50%'
+		width: '50%',
 	},
 	title: {
 		textAlign: 'center',
@@ -51,5 +64,9 @@ const styles = StyleSheet.create({
 	},
 	subtitle: {
 		textAlign: 'center',
+	},
+	nextAppointment: {
+		width: '100%',
+		padding: 10
 	}
 });
