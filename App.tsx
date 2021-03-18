@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import { useFonts, Neuton_400Regular, Neuton_700Bold } from '@expo-google-fonts/neuton'
 import BaseStyles from './BaseStyles';
 import NextAppointmentCard from './components/NextAppointmentCard';
+import PrimaryButton from './components/PrimaryButton';
+import Colors from './Colors';
 
 const Isotype = require("./assets/isotype.png")
+const BackgroundImage = require("./assets/home-bg.png")
 
 export default function App() {
 
@@ -27,10 +30,16 @@ export default function App() {
 					<Text style={{ ...BaseStyles.subtitle, ...styles.subtitle }}>Barbershop & Grooming Store</Text>
 				</View>
 			</View>
-			
-			<View style={styles.nextAppointment}>
-				<NextAppointmentCard/>
-			</View>
+
+			<ImageBackground source={BackgroundImage} style={styles.footer}>
+				<View style={styles.nextAppointment}>
+					<NextAppointmentCard />
+				</View>
+				<View style={styles.newAppointment}>
+					<PrimaryButton backgroundColor={Colors.TEXT_PRIMARY_LIGHT} titleColor={Colors.FORMAL_BLUE	} title="New appointment" onPress={() => { }}></PrimaryButton>
+				</View>
+			</ImageBackground>
+
 			<StatusBar style="auto" />
 		</View>
 	);
@@ -51,7 +60,7 @@ const styles = StyleSheet.create({
 	},
 	isotype: {
 		resizeMode: 'contain',
-		height: 150,
+		height: 90,
 		marginBottom: 10
 	},
 	logo: {
@@ -68,5 +77,16 @@ const styles = StyleSheet.create({
 	nextAppointment: {
 		width: '100%',
 		padding: 10
+	},
+	newAppointment: {
+		width: '100%',
+		paddingHorizontal: 10,
+		paddingBottom: 10
+	},
+	footer: {
+		width: '100%',
+		height: 450,
+		display: 'flex',
+		justifyContent: 'flex-end'
 	}
 });

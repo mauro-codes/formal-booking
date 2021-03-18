@@ -4,12 +4,12 @@ import Colors from './Colors'
 const BaseStyles = StyleSheet.create({
     title: {
         fontFamily: 'Neuton_700Bold',
-        fontSize: 46,
+        fontSize: 40,
         color: Colors.FORMAL_BLUE
     },
     subtitle: {
         fontFamily: 'Neuton_700Bold',
-        fontSize: 24,
+        fontSize: 22,
         color: Colors.FORMAL_BLUE
     }
 })
