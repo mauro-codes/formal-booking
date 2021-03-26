@@ -11,7 +11,12 @@ const BaseStyles = StyleSheet.create({
         fontFamily: 'Neuton_700Bold',
         fontSize: 22,
         color: Colors.FORMAL_BLUE
-    }
+    },
+    tabBarIcon: {
+		width: 30,
+		height: 30,
+		resizeMode: "contain"
+	},
 })
 
 export default BaseStyles
