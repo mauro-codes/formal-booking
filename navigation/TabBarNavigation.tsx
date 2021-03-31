@@ -14,15 +14,15 @@ const MyAccountIcon = require("../assets/my-account-icon.png")
 import HomeScreen from "../screens/HomeScreen"
 import AppointmentsScreen from "../screens/AppointmentsScreen"
 import MyAccountScreen from "../screens/MyAccount"
-import LoginScreen from "../screens/LoginScreen"
+import SignInScreen from "../screens/SignInScreen"
 
 const Tab = createBottomTabNavigator()
 const HomeStack = createStackNavigator()
 
 const HomeStackScreen = () => {
 	return (
-		<HomeStack.Navigator initialRouteName="Login">
-			<HomeStack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
+		<HomeStack.Navigator initialRouteName="SignIn">
+			<HomeStack.Screen name="SignIn" options={{ headerShown: false }} component={SignInScreen} />
 			<HomeStack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
 		</HomeStack.Navigator>
 	)

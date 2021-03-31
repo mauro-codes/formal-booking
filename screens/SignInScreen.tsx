@@ -10,7 +10,7 @@ const Isotype = require("../assets/isotype.png")
 const EmailIcon = require("../assets/email-icon.png")
 const PasswordIcon = require("../assets/password-icon.png")
 const SignInIcon = require("../assets/signin-icon.png")
-const LoginScreen: React.FC = () => {
+const SignInScreen: React.FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Image style={styles.isotype} source={Isotype}></Image>
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LoginScreen
+export default SignInScreen
