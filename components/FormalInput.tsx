@@ -5,23 +5,31 @@ import Colors from "../Colors"
 type FormalInputProps = {
     label: string
     icon: ImageSourcePropType,
-    placeholder: string,
+    placeholder?: string,
     style?: ViewStyle,
     isProtected?: boolean
+    readOnly?: boolean
+    value?: string
+    onChange: (text: string) => void
 }
 
 const FormalInput: React.FC<FormalInputProps> = (props) => {
 
-    const { label, icon, placeholder, style = {}, isProtected = false } = props
+    const { label, icon, placeholder, style = {}, isProtected = false, readOnly = false, value, onChange } = props
 
     return (
         <View style={[styles.container, style]}>
             <Text style={styles.label}>{label}</Text>
-            <View style={styles.input}>
+            <View style={styles.wrapper}>
                 <Image style={styles.icon} source={icon}></Image>
-                <TextInput secureTextEntry={isProtected} placeholder={placeholder}></TextInput>
+                <TextInput 
+                    value={value}
+                    editable={!readOnly}
+                    secureTextEntry={isProtected} 
+                    placeholder={placeholder}
+                    onChangeText={(text) => onChange(text)}
+                    style={styles.input}></TextInput>
             </View>
-
         </View>
     )
 }
@@ -30,7 +38,7 @@ const styles = StyleSheet.create({
     container: {
         width: "100%"
     },
-    input: {
+    wrapper: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -55,6 +63,9 @@ const styles = StyleSheet.create({
         textAlign: "left",
         width: "100%",
         fontSize: 24
+    },
+    input: {
+        color: Colors.TEXT_PRIMARY
     }
 })
 
