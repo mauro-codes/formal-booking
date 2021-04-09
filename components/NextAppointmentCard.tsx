@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from "react-native"
 import Colors from "../Colors"
-import { Appointment } from '../entities/Appointment';
+import { Appointment } from '../types/Appointment';
 import DateHelper from '../helpers/DateHelper';
 import AppointmentService from '../services/AppointmentService';
 
