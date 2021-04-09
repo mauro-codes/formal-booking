@@ -1,5 +1,5 @@
 import { createBottomTabNavigator, BottomTabBarOptions } from "@react-navigation/bottom-tabs"
-import { createStackNavigator } from "@react-navigation/stack"
+import { createStackNavigator, StackNavigationOptions } from "@react-navigation/stack"
 import { Image, ImageStyle } from "react-native"
 import BaseStyles from "../BaseStyles"
 import * as React from "react"
@@ -13,8 +13,12 @@ const MyAccountIcon = require("../assets/my-account-icon.png")
 // Screens
 import HomeScreen from "../screens/HomeScreen"
 import AppointmentsScreen from "../screens/AppointmentsScreen"
-import MyAccountScreen from "../screens/MyAccount"
+import MyAccountScreen from "../screens/MyAccountScreen"
 import SignInScreen from "../screens/SignInScreen"
+import SignUpScreen from "../screens/SignUpScreen"
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen"
+import ResetPasswordScreen from "../screens/ResetPasswordScreen"
+import ServiceSelectionScreen from "../screens/ServiceSelectionScreen"
 
 const Tab = createBottomTabNavigator()
 const HomeStack = createStackNavigator()
@@ -23,9 +27,29 @@ const HomeStackScreen = () => {
 	return (
 		<HomeStack.Navigator initialRouteName="SignIn">
 			<HomeStack.Screen name="SignIn" options={{ headerShown: false }} component={SignInScreen} />
+			<HomeStack.Screen name="SignUp" options={{ headerShown: false }} component={SignUpScreen} />
+			<HomeStack.Screen name="ForgotPassword" options={{ headerShown: false }} component={ForgotPasswordScreen} />
+			<HomeStack.Screen name="ResetPassword" options={{ headerShown: false }} component={ResetPasswordScreen} />
 			<HomeStack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
+			<HomeStack.Screen 
+				name="ServiceSelection" 
+				options={{ 
+					headerTitle: "New appointment", 
+					...headerOptions
+				}} 
+				component={ServiceSelectionScreen} />
 		</HomeStack.Navigator>
 	)
+}
+
+const headerOptions: StackNavigationOptions = {
+	headerStyle: { 
+		backgroundColor: Colors.FORMAL_BLUE 
+	},
+	headerTitleStyle: {
+		color: Colors.TEXT_PRIMARY_LIGHT
+	},
+	headerTintColor: Colors.TEXT_PRIMARY_LIGHT
 }
 
 const TabBarNavigation: React.FC = () => {

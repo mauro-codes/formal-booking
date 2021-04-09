@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
 import { useFonts, Neuton_400Regular, Neuton_700Bold } from '@expo-google-fonts/neuton'
@@ -7,6 +6,7 @@ import NextAppointmentCard from '../components/NextAppointmentCard';
 import PrimaryButton from '../components/PrimaryButton';
 import Colors from '../Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 const Isotype = require("../assets/isotype.png")
 const BackgroundImage = require("../assets/home-bg.png")
@@ -14,6 +14,11 @@ const BackgroundImage = require("../assets/home-bg.png")
 const HomeScreen: React.FC = () => {
 
 	const [fontsLoaded] = useFonts({ Neuton_400Regular, Neuton_700Bold })
+    const navigation = useNavigation()
+
+	const navigateToNewAppointment = () => {
+		navigation.navigate("ServiceSelection")
+	}
 
 	if (!fontsLoaded)
 		return (
@@ -37,7 +42,12 @@ const HomeScreen: React.FC = () => {
 					<NextAppointmentCard />
 				</View>
 				<View style={styles.newAppointment}>
-					<PrimaryButton backgroundColor={Colors.TEXT_PRIMARY_LIGHT} titleColor={Colors.FORMAL_BLUE} title="New appointment" onPress={() => { }}></PrimaryButton>
+					<PrimaryButton 
+						backgroundColor={Colors.TEXT_PRIMARY_LIGHT} 
+						titleColor={Colors.FORMAL_BLUE} 
+						title="New appointment" 
+						onPress={() => navigateToNewAppointment()}>	
+					</PrimaryButton>
 				</View>
 			</ImageBackground>
 		</SafeAreaView>
