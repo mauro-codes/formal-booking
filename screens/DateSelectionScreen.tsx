@@ -14,12 +14,12 @@ import TurnCard from "../components/TurnCard";
 import { Turn } from "../entities/Turn";
 import AppointmentService from "../services/AppointmentService";
 import DateHelper from "../helpers/DateHelper";
-import DateTimePicker, {Event} from "@react-native-community/datetimepicker";
+import DateTimePicker, { Event } from "@react-native-community/datetimepicker";
 
 const DateSelectionScreen: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [turns, setTurns] = useState<Turn[]>([]);
-    const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
+    const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
     const CalendarIcon = require("../assets/calendar-icon.png");
     const navigation = useNavigation();
 
@@ -34,12 +34,12 @@ const DateSelectionScreen: React.FC = () => {
     useEffect(() => {
         getAvailableTurns();
     }, [selectedDate]);
-    
+
     const onDateChanged = (event: Event, selectedDate?: Date | undefined) => {
-        const currentDate = selectedDate || new Date()
-        setShowDatePicker(Platform.OS === 'ios');
+        const currentDate = selectedDate || new Date();
+        setShowDatePicker(Platform.OS === "ios");
         setSelectedDate(currentDate);
-      };
+    };
 
     return (
         <ScrollView>
@@ -52,14 +52,17 @@ const DateSelectionScreen: React.FC = () => {
                 <Text style={styles.date}>
                     {DateHelper.getNormalDate(selectedDate)}
                 </Text>
-                <TouchableWithoutFeedback onPress={() => setShowDatePicker(true)}>
+                <TouchableWithoutFeedback
+                    onPress={() => setShowDatePicker(true)}
+                >
                     <Image style={styles.calendarIcon} source={CalendarIcon} />
                 </TouchableWithoutFeedback>
             </View>
 
             <View style={styles.servicesWrapper}>
                 {turns.map((turn, i) => (
-                    <TurnCard key={`turn-${i}`}
+                    <TurnCard
+                        key={`turn-${i}`}
                         hour={turn.hour}
                         minutes={turn.minutes}
                         available={turn.available}
@@ -69,17 +72,16 @@ const DateSelectionScreen: React.FC = () => {
                     />
                 ))}
             </View>
-                {showDatePicker && (
-                    <DateTimePicker
-                      value={selectedDate}
-                      mode={"date"}
-                      display="default"
-                      onChange={onDateChanged}
-                    />
-                )}
+            {showDatePicker && (
+                <DateTimePicker
+                    value={selectedDate}
+                    mode={"date"}
+                    display="default"
+                    onChange={onDateChanged}
+                />
+            )}
         </ScrollView>
     );
-
 };
 
 const styles = StyleSheet.create({
@@ -102,7 +104,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
     },
     date: {
         color: Colors.TEXT_PRIMARY_LIGHT,
@@ -113,8 +115,8 @@ const styles = StyleSheet.create({
         resizeMode: "contain",
         tintColor: "white",
         height: 25,
-        width: 25
-    }
+        width: 25,
+    },
 });
 
 export default DateSelectionScreen;
