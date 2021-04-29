@@ -7,17 +7,19 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Image,
+    Platform,
 } from "react-native";
 import Colors from "../Colors";
 import TurnCard from "../components/TurnCard";
 import { Turn } from "../entities/Turn";
 import AppointmentService from "../services/AppointmentService";
 import DateHelper from "../helpers/DateHelper";
+import DateTimePicker, {Event} from "@react-native-community/datetimepicker";
 
 const DateSelectionScreen: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [turns, setTurns] = useState<Turn[]>([]);
-
+    const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
     const CalendarIcon = require("../assets/calendar-icon.png");
     const navigation = useNavigation();
 
@@ -32,6 +34,12 @@ const DateSelectionScreen: React.FC = () => {
     useEffect(() => {
         getAvailableTurns();
     }, [selectedDate]);
+    
+    const onDateChanged = (event: Event, selectedDate?: Date | undefined) => {
+        const currentDate = selectedDate || new Date()
+        setShowDatePicker(Platform.OS === 'ios');
+        setSelectedDate(currentDate);
+      };
 
     return (
         <ScrollView>
@@ -44,14 +52,14 @@ const DateSelectionScreen: React.FC = () => {
                 <Text style={styles.date}>
                     {DateHelper.getNormalDate(selectedDate)}
                 </Text>
-                <TouchableWithoutFeedback onPress={() => alert("Calendar tapped")}>
+                <TouchableWithoutFeedback onPress={() => setShowDatePicker(true)}>
                     <Image style={styles.calendarIcon} source={CalendarIcon} />
                 </TouchableWithoutFeedback>
             </View>
 
             <View style={styles.servicesWrapper}>
-                {turns.map((turn) => (
-                    <TurnCard
+                {turns.map((turn, i) => (
+                    <TurnCard key={`turn-${i}`}
                         hour={turn.hour}
                         minutes={turn.minutes}
                         available={turn.available}
@@ -61,8 +69,17 @@ const DateSelectionScreen: React.FC = () => {
                     />
                 ))}
             </View>
+                {showDatePicker && (
+                    <DateTimePicker
+                      value={selectedDate}
+                      mode={"date"}
+                      display="default"
+                      onChange={onDateChanged}
+                    />
+                )}
         </ScrollView>
     );
+
 };
 
 const styles = StyleSheet.create({

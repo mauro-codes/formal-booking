@@ -27,8 +27,8 @@ const TypeOfWorkSelectionScreen: React.FC = () => {
                 <Text style={styles.title}>Pick a service</Text>
             </View>
             <View style={styles.servicesWrapper}>
-                {typesOfWork.map((typeOfWork) => (
-                    <TypeOfWorkCard
+                {typesOfWork.map((typeOfWork, i) => (
+                    <TypeOfWorkCard key={`type-of-work-${i}`}
                         id={typeOfWork.id}
                         name={typeOfWork.name}
                         duration={typeOfWork.duration}

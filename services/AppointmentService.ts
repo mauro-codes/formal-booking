@@ -34,7 +34,7 @@ class AppointmentService {
         ];
     };
 
-    static getTurns = async (date: Date, typeOfServiceId: string): Turn[] => {
+    static getTurns = async (date: Date, typeOfServiceId: string): Promise<Turn[]> => {
         return [
             {
                 hour: 12,
