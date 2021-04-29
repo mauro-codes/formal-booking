@@ -18,7 +18,8 @@ import SignInScreen from "../screens/SignInScreen"
 import SignUpScreen from "../screens/SignUpScreen"
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen"
 import ResetPasswordScreen from "../screens/ResetPasswordScreen"
-import ServiceSelectionScreen from "../screens/ServiceSelectionScreen"
+import TypeOfWorkSelectionScreen from "../screens/TypeOfWorkSelectionScreen"
+import DateSelectionScreen from "../screens/DateSelectionScreen"
 
 const Tab = createBottomTabNavigator()
 const HomeStack = createStackNavigator()
@@ -32,12 +33,20 @@ const HomeStackScreen = () => {
 			<HomeStack.Screen name="ResetPassword" options={{ headerShown: false }} component={ResetPasswordScreen} />
 			<HomeStack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
 			<HomeStack.Screen 
-				name="ServiceSelection" 
+				name="TypeOfWorkSelection" 
 				options={{ 
 					headerTitle: "New appointment", 
 					...headerOptions
 				}} 
-				component={ServiceSelectionScreen} />
+				component={TypeOfWorkSelectionScreen} />
+			<HomeStack.Screen 
+				name="DateSelection" 
+				options={{ 
+					headerTitle: "New appointment", 
+					...headerOptions
+				}} 
+				component={DateSelectionScreen} />
+
 		</HomeStack.Navigator>
 	)
 }

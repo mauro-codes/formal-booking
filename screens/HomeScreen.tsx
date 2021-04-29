@@ -17,7 +17,7 @@ const HomeScreen: React.FC = () => {
     const navigation = useNavigation()
 
 	const navigateToNewAppointment = () => {
-		navigation.navigate("ServiceSelection")
+		navigation.navigate("TypeOfWorkSelection")
 	}
 
 	if (!fontsLoaded)

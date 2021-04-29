@@ -1,25 +1,29 @@
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import Colors from '../Colors';
 
-type ServiceCardProps = {
+type TypeOfWorkCardProps = {
+    id: string
     name: string
     duration: string
     price: number
+    onTypeOfWorkSelected: (id: string) => void
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = (props) => {
+const TypeOfWorkCard: React.FC<TypeOfWorkCardProps> = (props) => {
 
-    const { name, duration, price } = props
+    const { id, name, duration, price, onTypeOfWorkSelected } = props
 
     return (
-        <View style={styles.container}>
-            <View style={styles.body}>
-                <Text style={styles.title}>{name}</Text>
-                <Text style={styles.duration}>{duration}</Text>
+        <TouchableWithoutFeedback onPress={() => onTypeOfWorkSelected(id)}>
+            <View key={id} style={styles.container}>
+                <View style={styles.body}>
+                    <Text style={styles.title}>{name}</Text>
+                    <Text style={styles.duration}>{duration}</Text>
+                </View>
+                <Text style={styles.price}>$ {price}</Text>
             </View>
-            <Text style={styles.price}>$ {price}</Text>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -53,4 +57,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ServiceCard
+export default TypeOfWorkCard
