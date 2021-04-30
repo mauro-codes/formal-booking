@@ -67,7 +67,7 @@ const DateSelectionScreen: React.FC = () => {
                         minutes={turn.minutes}
                         available={turn.available}
                         onTurnSelected={(hour, minutes) =>
-                            navigation.navigate("Confirmation")
+                            navigation.navigate("Summary")
                         }
                     />
                 ))}
